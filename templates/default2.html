@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>日签测试</title>
+    <style type="text/css">
+        @font-face {
+            font-family: sans;
+            src: url(./font.otf);
+            font-weight: lighter;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        .date {
+            text-align: center;
+            position: relative;
+        }
+
+        .date .day {
+            font-size: 60px;
+        }
+
+        .date .month {
+            position: relative;
+            font-size: 24px;
+
+        }
+
+        .month .en {
+            text-decoration: underline;
+        }
+
+        body {
+            width: 800px;
+            height: 1150px;
+        }
+
+        .body p {
+            font-family: sans;
+            font-weight: lighter;
+            font-size: 24px;
+            margin: 100px 100px 0px 100px;
+        }
+
+        .signature {
+            text-align: right;
+            font-size: 24px;
+            margin-right: 100px;
+            margin-bottom: 100px;
+        }
+
+        .footer {
+            padding: 0 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .qrcode {
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+<div class="header">
+    <img src="./header.jpeg">
+</div>
+<div class="body">
+    <p>
+        一个有纸、笔、橡皮擦并且坚持严格的行为准则的人，实质上就是一台通用图灵机。
+    </p>
+    <div class="signature">
+        -- 阿兰·图灵
+    </div>
+</div>
+
+<div class="footer">
+    <div class="date">
+        <span class="day">15</span>
+        <div class="month">
+            <span class="en">Nov.</span>
+            <span class="zh">十一月</span>
+        </div>
+    </div>
+    <div class="qrcode">
+        <img src="./qrcode.jpg" width="120">
+    </div>
+</div>
+</body>
+</html>
