@@ -12,6 +12,8 @@ const options = yargs
  .argv;
 
 console.log(`You are creating poster by template: ${options.template}`);
+console.log(options)
+
 const rootDir = process.cwd();
 
 // 1. compile file 
@@ -19,14 +21,10 @@ const rootDir = process.cwd();
 // 3. screenshot
 // 4. clear 
 
+
 const templateFile = `/${rootDir}/templates/${options.template}.html`;
-
-
 const templateString = fs.readFileSync(templateFile).toString();
-
-
-const redenered = ejs.render(templateString, {}, {});
-console.log(redenered);
+const redenered = ejs.render(templateString, JSON.parse(options.prameters), {});
 
 const outputHtmlPath = `/${rootDir}/templates/tmp.html`;
 fs.writeFileSync(outputHtmlPath,redenered);
