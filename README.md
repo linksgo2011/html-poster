@@ -18,8 +18,14 @@ or you can:
 
 ## Demo
 
+**default template**
 ![default](./demo/default.png)
 
+**article-cover**
+
+> node bin/index.js -t article-cover -p '{"title":"Domain-Driven Design 101"}'
+
+![default](./demo/article-cover.png)
 
 ## Custom templates 
 

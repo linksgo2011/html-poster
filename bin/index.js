@@ -13,7 +13,10 @@ const ejs = require("ejs");
 const options = yargs
     .usage("Usage: -t <template> -p <prameters> -o <output>")
     .option("t", {alias: "template", describe: "template name", type: "string", demandOption: true})
-    .option("p", {alias: "prameters", describe: "prameters for template", type: "string", demandOption: false})
+    .option("p", {
+        alias: "prameters", describe: "prameters for template", type: "string", demandOption: false,
+        default: '{}'
+    })
     .option("o", {
         alias: "output",
         describe: "output name, default is 'output.png'",
