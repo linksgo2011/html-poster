@@ -52,7 +52,7 @@
         .body {
             padding: 100px 30px;
             font-size: 36px;
-            text-align: left;
+            text-align: justify;
         }
 
         .footer {
@@ -70,7 +70,11 @@
 </head>
 <body>
 <div class="header">
-    <img src="./header.jpeg">
+    <% if (header) { %>
+    <img src="<%= header %>">
+    <% }else{ %>
+    <img src=" ./header.jpeg">
+    <% } %>
 </div>
 <div class="date">
     <span class="day"><%= sys.en.dayInMonth%></span>
@@ -80,7 +84,7 @@
     </div>
 </div>
 <div class="body">
-    <%= content %>
+    <%- content %>
 </div>
 <div class="footer">
     <div class="qrcode">
