@@ -71,7 +71,7 @@
 <body>
 <div class="header">
     <% if (header) { %>
-    <img src="<%= header %>">
+    <img src="<%= locals.header %>">
     <% }else{ %>
     <img src=" ./header.jpeg">
     <% } %>
@@ -88,10 +88,12 @@
 </div>
 <div class="footer">
     <div class="qrcode">
-        <!--
         <p>Wechat Account</p>
+        <% if (locals.qrcode) { %>
+        <img src="<%= qrcode %>">
+        <% }else{ %>
         <img src="./qrcode.jpg" width="120">
-        -->
+        <% } %>
     </div>
     <div class="signature">
         -- <%= author %>
