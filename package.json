@@ -1,5 +1,5 @@
 {
-  "name": "poster-by-html",
+  "name": "html-poster",
   "version": "1.0.0",
   "description": "A poster maker by html template.",
   "main": "./bin/index.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/linksgo2011/poster-by-html.git"
+    "url": "git+https://github.com/linksgo2011/html-poster.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/linksgo2011/poster-by-html/issues"
+    "url": "https://github.com/linksgo2011/html-poster/issues"
   },
-  "homepage": "https://github.com/linksgo2011/poster-by-html#readme",
+  "homepage": "https://github.com/linksgo2011/html-poster#readme",
   "dependencies": {
     "ejs": "^3.1.6",
     "puppeteer": "^11.0.0",

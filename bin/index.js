@@ -42,7 +42,7 @@ const data = {
 const rendered = ejs.render(templateString, data, {});
 
 const outputHtmlPath = `${templateDir}tmp.html`;
-fs.writeFileSync(outputHtmlPath, rendered);
+fs.writeFileSync(outputHtmlPath, rendered, {force: true});
 
 const outputHtmlUrl = `file://${outputHtmlPath}`;
 (async () => {
@@ -59,7 +59,7 @@ const outputHtmlUrl = `file://${outputHtmlPath}`;
     await page.screenshot({path: output});
 
     await browser.close();
-    // fs.rmSync(outputHtmlUrl);
+
 })();
 
 

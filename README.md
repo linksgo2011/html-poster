@@ -3,17 +3,22 @@ A poster maker by html template.
 
 ## usage
 
-> git clone https://github.com/linksgo2011/poster-by-html.git
+> git clone https://github.com/linksgo2011/html-poster.git
 
-> cd poster-by-html
+> cd html-poster
 
-> node bin/index.js -t default -p '{"author":"少个分号","content":"架构的原则：权衡大于绝对；合适大于正确；共识大于偏好。"}'
+> node bin/index.js -t default -p '{"author":"anonymous","content":"Principles of architecture: trade-offs over absolutes; More right than right; Consensus over preference."}'
 
-or 
+or you can: 
 
 > npm install -g .
 
-> htmlposter -t default -p '{"author":"少个分号","content":"架构的原则：权衡大于绝对；合适大于正确；共识大于偏好。"}'
+> htmlposter -t default -p '{"author":"anonymous","content":"Principles of architecture: trade-offs over absolutes; More right than right; Consensus over preference."}'
+
+
+## demo
+
+![default](./demo/default.png)
 
 ## reference
 
