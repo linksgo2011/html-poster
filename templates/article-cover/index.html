@@ -10,7 +10,11 @@
         body .cover{
             width: 900px;
             height: 500px;
+            <% if (locals.background) { %>
+            background: url("<%= locals.background %>") ;
+                <% }else{ %>
             background: url("./default.jpg") ;
+            <% } %>
             background-repeat: no-repeat;
             background-size: cover;
         }
