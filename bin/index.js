@@ -4,7 +4,7 @@ const puppeteer = require('puppeteer');
 const fs = require("fs");
 const ejs = require("ejs");
 
-// 0 parse template
+// 0. parse template
 // 1. compile file
 // 2. output html
 // 3. screenshot
