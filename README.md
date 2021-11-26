@@ -7,6 +7,8 @@ A poster maker by html template.
 
 > cd html-poster
 
+> npm install 
+
 > node bin/index.js -t default -p '{"author":"anonymous","content":"Principles of architecture: trade-offs over absolutes; More right than right; Consensus over preference."}'
 
 or you can: 
