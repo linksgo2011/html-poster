@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Title</title>
+    <style type="text/css">
+        @font-face {
+            font-family: sans;
+            src: url(./font.otf);
+            font-weight: lighter;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        body {
+            font-family: sans, serif;
+            font-weight: lighter;
+            width: 800px;
+            height: 1150px;
+        }
+
+        .date {
+            text-align: center;
+            position: relative;
+            margin-top: 50px;
+        }
+
+        .date .day {
+            font-size: 60px;
+        }
+
+        .date .month {
+
+            position: absolute;
+
+            left: 460px;
+            top: 10px;
+            font-size: 24px;
+
+        }
+
+        .month .en {
+            text-decoration: underline;
+        }
+
+        .body {
+            padding: 100px 30px;
+            font-size: 36px;
+            text-align: left;
+        }
+
+        .footer {
+            padding: 0 30px;
+            font-size: 24px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .qrcode {
+            font-size: 14px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <img src="./header.jpeg">
+</div>
+<div class="date">
+    <span class="day"><%= sys.en.dayInMonth%></span>
+    <div class="month">
+        <span class="en"><%= sys.en.month%>.</span>
+        <span class="zh"><%= sys.en.monthNumber%></span>
+    </div>
+</div>
+<div class="body">
+    <%= content %>
+</div>
+<div class="footer">
+    <div class="qrcode">
+        <p>Wechat Account</p>
+        <img src="./qrcode.jpg" width="120">
+    </div>
+    <div class="signature">
+        -- <%= author %>
+    </div>
+</div>
+</body>
+</html>
