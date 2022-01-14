@@ -37,7 +37,7 @@
                 <div class="row">
                     <div class="six columns">
                         <label for="template">模板</label>
-                        <select class="u-full-width" id="template">
+                        <select class="u-full-width" id="template" onchange="handleTemplateChange()">
                             <option value="default">日签</option>
                             <option value="article-cover">题图</option>
                         </select>
@@ -46,12 +46,7 @@
                 <div class="row">
                     <div class="six columns">
                         <label>参数</label>
-                        <textarea id="parameters" rows="10" cols="25" class="u-full-width">
-{
-    "author": "anonymous",
-    "content": "Principles of architecture: trade-offs over absolutes; More right than right; Consensus over preference."
-}
-                  </textarea>
+                        <textarea id="parameters" rows="10" cols="25" class="u-full-width"></textarea>
                     </div>
                 </div>
                 <button-groups>
@@ -69,17 +64,42 @@
     </div>
 </div>
 <script type="text/javascript">
+    const defaultParams = {
+        default: {
+            "author": "anonymous",
+            "content": "Principles of architecture: trade-offs over absolutes; More right than right; Consensus over preference.",
+            "qrcode": "",
+            "header": "https%3A%2F%2Fimages.unsplash.com%2Fphoto-1593642634443-44adaa06623a%3Fixlib%3Drb-1.2.1%26ixid%3DMnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8%26auto%3Dformat%26fit%3Dcrop%26w%3D1325%26q%3D80"
+        },
+        "article-cover": {
+            "title": "海报生成器",
+            "background": "https%3A%2F%2Fimages.unsplash.com%2Fphoto-1593642634443-44adaa06623a%3Fixlib%3Drb-1.2.1%26ixid%3DMnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8%26auto%3Dformat%26fit%3Dcrop%26w%3D1325%26q%3D80"
+        }
+    }
+
+    window.onload = function(){
+        handleTemplateChange();
+    };
+
+    function handleTemplateChange() {
+        console.log(builder.template.value)
+        builder.parameters.value = JSON.stringify(defaultParams[builder.template.value]);
+        preview();
+    }
+
     function preview() {
         const formData = {
             template: builder.template.value,
-            parameters: builder.parameters.value
+            parameters: encodeURIComponent(builder.parameters.value)
         }
-        window.frames[0].location.href = '/preview?template=' + formData.template + '&parameters=' + formData.parameters;
+        const target = window.location.href + 'preview?template=' + formData.template + '&parameters=' + formData.parameters;
+        window.frames[0].location.href = target;
+        return formData.parameters;
     }
 
     function download() {
-        preview();
-        window.open("/download?target=" + encodeURIComponent(window.frames[0].location.href));
+        let parameters = preview();
+        window.open("/download?parameters=" + parameters + '&template=' + builder.template.value);
     }
 </script>
 </body>

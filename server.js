@@ -7,6 +7,16 @@ const port = 3000
 
 app.use(express.static('site'))
 app.use("/templates", express.static('templates'))
+const rootDir = process.cwd();
+
+function getMetaJson(template) {
+    const templateDir = `${rootDir}/templates/${template}/`;
+    if (!fs.existsSync(templateDir)) {
+        console.error("Template not found!");
+        throw new Error("Template not found!");
+    }
+    return fs.readFileSync(`${templateDir}/meta.json`).toString();
+}
 
 function renderHTML(options) {
     const rootDir = process.cwd();
@@ -18,11 +28,10 @@ function renderHTML(options) {
     }
     const templateFile = `${templateDir}index.html`;
     const templateString = fs.readFileSync(templateFile).toString();
-
     const data = {
         templatePath,
         sys: presetData(),
-        ...JSON.parse(options.parameters)
+        ...JSON.parse(decodeURIComponent(options.parameters))
     }
     return ejs.render(templateString, data, {});
 }
@@ -32,16 +41,17 @@ app.get('/preview', function (req, res) {
 })
 
 app.get('/download', async function (req, res) {
-    console.log(decodeURIComponent(req.query.target));
-
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     page.setViewport({
         width: 800,
         height: 1150,
-        deviceScaleFactor: 1
+        deviceScaleFactor: 1,
+        ...JSON.parse(getMetaJson(req.query.template))
     });
-    await page.goto(decodeURIComponent(req.query.target));
+
+    const target = "http://localhost:3000/preview?parameters=" + req.query.parameters + '&template=' + req.query.template;
+    await page.goto(target);
     let img = await page.screenshot();
     await browser.close();
     res.writeHead(200, {

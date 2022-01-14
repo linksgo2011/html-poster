@@ -37,8 +37,10 @@ if (!fs.existsSync(templateDir)) {
 const metaJson = fs.readFileSync(`${templateDir}/meta.json`).toString();
 const templateFile = `${templateDir}index.html`;
 const templateString = fs.readFileSync(templateFile).toString();
+const templatePath = './'
 
 const data = {
+    templatePath,
     sys: presetData(),
     ...JSON.parse(options.prameters)
 }
