@@ -1,7 +1,7 @@
 # html-poster
 A poster maker by html template.
 
-## Usage
+## CLI
 
 > git clone https://github.com/linksgo2011/html-poster.git
 
@@ -28,6 +28,12 @@ or you can:
 > node bin/index.js -t article-cover -p '{"title":"Domain-Driven Design 101"}'
 
 ![default](./demo/article-cover.png)
+
+## Web UI 
+
+> npm install 
+
+> node server.js
 
 ## Custom templates 
 

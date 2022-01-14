@@ -5,7 +5,7 @@
     <style type="text/css">
         @font-face {
             font-family: sans;
-            src: url(./font.otf);
+            src: url(<%= locals.templatePath %>font.otf);
             font-weight: lighter;
         }
 
@@ -50,7 +50,7 @@
         }
 
         .body {
-            padding: 100px 30px;
+            padding: 80px 30px;
             font-size: 36px;
             text-align: justify;
         }
@@ -73,7 +73,7 @@
     <% if (locals.header) { %>
     <img src="<%= locals.header %>">
     <% }else{ %>
-    <img src=" ./header.jpeg">
+    <img src="<%= locals.templatePath %>header.jpeg">
     <% } %>
 </div>
 <div class="date">
@@ -92,7 +92,7 @@
         <% if (locals.qrcode) { %>
         <img src="<%= qrcode %>">
         <% }else{ %>
-        <img src="./qrcode.jpg" width="120">
+        <img src="<%= locals.templatePath %>qrcode.jpg" width="120">
         <% } %>
     </div>
     <div class="signature">

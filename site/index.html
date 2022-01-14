@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>海报生成器</title>
+    <link rel="stylesheet" href="./css/normalize.css">
+    <style type="text/css">
+        body {
+            padding: 20px;
+        }
+
+        .row {
+            display: flex;
+        }
+
+        .left {
+            width: 300px;
+        }
+
+        form .row {
+            line-height: 30px;
+        }
+
+        form label {
+            vertical-align: top;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <h1>海报生成器</h1>
+</div>
+<div class="body">
+    <div class="row">
+        <div class="left column">
+            <form id="builder">
+                <div class="row">
+                    <div class="six columns">
+                        <label for="template">模板</label>
+                        <select class="u-full-width" id="template">
+                            <option value="default">日签</option>
+                            <option value="article-cover">题图</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="six columns">
+                        <label>参数</label>
+                        <textarea id="parameters" rows="10" cols="25" class="u-full-width">
+{
+    "author": "anonymous",
+    "content": "Principles of architecture: trade-offs over absolutes; More right than right; Consensus over preference."
+}
+                  </textarea>
+                    </div>
+                </div>
+                <button-groups>
+                    <input type="button" onclick="preview()" value="预览">
+                    <input type="button" class="button-primary" onclick="download()" value="下载">
+                </button-groups>
+            </form>
+        </div>
+        <div class="right column">
+            <h2>预览</h2>
+            <iframe id="preview" width="800" height="1150"
+                    src="/preview?template=default&parameters=%7B%22author%22%3A%22anonymous%22%2C%22content%22%3A%22Principles%20of%20architecture%3A%20trade-offs%20over%20absolutes%3B%20More%20right%20than%20right%3B%20Consensus%20over%20preference.%22%7D"
+                    frameborder="0"></iframe>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function preview() {
+        const formData = {
+            template: builder.template.value,
+            parameters: builder.parameters.value
+        }
+        window.frames[0].location.href = '/preview?template=' + formData.template + '&parameters=' + formData.parameters;
+    }
+
+    function download() {
+        preview();
+        window.open("/download?target=" + encodeURIComponent(window.frames[0].location.href));
+    }
+</script>
+</body>
+</html>
