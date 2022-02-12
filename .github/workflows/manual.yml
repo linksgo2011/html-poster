@@ -26,5 +26,10 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Runs a single command using the runners shell
-    - name: Send greeting
-      run: echo "Hello ${{ github.event.inputs.name }}"
+      - name: Run a command remotely
+        uses: docker://evaneos/ssh-action:0.1.0
+        with:
+          hosts: ${{ secrets.REMOTE_HOST }}
+          user: ${{ secrets.REMOTE_USER }}
+          private_key: ${{ secrets.SERVER_SSH_KEY }}
+          commands: echo "hello world!"
