@@ -95,13 +95,15 @@
     <div class="qrcode">
         <p>Wechat Account</p>
         <% if (locals.qrcode) { %>
-        <img src="<%= qrcode %>">
+        <img width="100px" src="<%= qrcode %>">
         <% }else{ %>
         <img src="<%= locals.templatePath %>qrcode.jpg" width="120">
         <% } %>
     </div>
     <div class="signature">
+        <% if (locals.author) { %>
         -- <%= author %>
+        <% } %>
     </div>
 </div>
 </body>
