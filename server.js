@@ -3,7 +3,7 @@ const ejs = require("ejs");
 const puppeteer = require('puppeteer');
 const express = require('express')
 const app = express()
-const port = 3000
+const port = 8080
 
 app.use(express.static('site'))
 app.use("/templates", express.static('templates'))
@@ -50,7 +50,7 @@ app.get('/download', async function (req, res) {
         ...JSON.parse(getMetaJson(req.query.template))
     });
 
-    const target = "http://localhost:3000/preview?parameters=" + req.query.parameters + '&template=' + req.query.template;
+    const target = "http://localhost:8080/preview?parameters=" + req.query.parameters + '&template=' + req.query.template;
     await page.goto(target);
     let img = await page.screenshot();
     await browser.close();
