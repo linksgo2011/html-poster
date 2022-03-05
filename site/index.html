@@ -9,12 +9,19 @@
             padding: 20px;
         }
 
+        .header {
+            text-align: center;
+            border-bottom: 1px solid #ccc;
+        }
+
         .row {
             display: flex;
         }
 
         .left {
-            width: 300px;
+            width: 380px;
+            border-right: 1px solid #ccc;
+            margin-right: 20px;
         }
 
         form .row {
@@ -24,15 +31,22 @@
         form label {
             vertical-align: top;
         }
+
+        .footer, .footer a {
+            font-size: 12px;
+            color: #3a3a3a;
+        }
     </style>
 </head>
 <body>
 <div class="header">
-    <h1>海报生成器</h1>
+    <h1>简易海报生成器</h1>
 </div>
 <div class="body">
     <div class="row">
         <div class="left column">
+            <h2>模板参数</h2>
+
             <form id="builder">
                 <div class="row">
                     <div class="six columns">
@@ -54,6 +68,11 @@
                     <input type="button" class="button-primary" onclick="download()" value="下载">
                 </button-groups>
             </form>
+
+            <h2>模板参数说明</h2>
+            <div id="parameterDocs">
+
+            </div>
         </div>
         <div class="right column">
             <h2>预览</h2>
@@ -62,17 +81,32 @@
                     frameborder="0"></iframe>
         </div>
     </div>
+    <div class="footer">
+        作者：@少个分号 <a href="http://shaogefenhao.com/">http://shaogefenhao.com/</a> 图片来自：<a href="https://unsplash.com/">https://unsplash.com/</a>
+    </div>
 </div>
 <script type="text/javascript">
     const defaultParams = {
         default: {
             "content": "这是一个海报生成器，通过 HTML 模板生成海报，替换相关参数使用。",
-            "qrcode": "http://shaogefenhao.com",
-            "header": "https://s3.bmp.ovh/imgs/2022/02/7853688fffdc151f.jpeg"
+            "qrcode": "http://shaogefenhao.com"
         },
         "article-cover": {
             "title": "题图生成器",
             "background": "https://s3.bmp.ovh/imgs/2022/02/7853688fffdc151f.jpeg"
+        }
+    }
+
+    const paramsDefines = {
+        default: {
+            "content": "展示的文本内容",
+            "qrcode": "生成二维码的链接",
+            "header": "日签中的图片地址，缺省时为随机生成",
+            "author": "作者，如果填写会出现在右下角"
+        },
+        "article-cover": {
+            "title": "标题",
+            "background": "背景图"
         }
     }
 
@@ -81,7 +115,17 @@
     function handleTemplateChange() {
         console.log(builder.template.value)
         builder.parameters.value = JSON.stringify(defaultParams[builder.template.value]);
+
         preview();
+        renderParameterDoc();
+    }
+
+    function renderParameterDoc() {
+        var docLine = [];
+        for (var key in paramsDefines[builder.template.value]) {
+            docLine.push(`<p>${key}:${paramsDefines[builder.template.value][key]}<p>`)
+        }
+        parameterDocs.innerHTML = docLine.join('\r\n');
     }
 
     function preview() {

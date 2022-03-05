@@ -1,0 +1,13 @@
+<%
+randomImage = function randomImage() {
+    var items = [
+        'https://s3.bmp.ovh/imgs/2022/03/8ac3f338cf17c411.jpeg',
+        'https://s3.bmp.ovh/imgs/2022/03/ef99e7764611b585.jpeg',
+        'https://s3.bmp.ovh/imgs/2022/03/b033bee0966df820.jpeg',
+        'https://s3.bmp.ovh/imgs/2022/03/529164a308beff99.jpeg',
+        'https://s3.bmp.ovh/imgs/2022/03/84115224ae8d0b4d.jpeg',
+        'https://s3.bmp.ovh/imgs/2022/03/2d0b456176c204cf.jpeg'
+    ];
+    return [Math.floor(Math.random() * items.length)];
+}
+%>
