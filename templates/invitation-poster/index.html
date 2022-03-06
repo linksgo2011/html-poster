@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Title</title>
+    <style type="text/css">
+        @font-face {
+            font-family: sans;
+            src: url(<%= locals.templatePath %>font.otf);
+            font-weight: lighter;
+        }
+        @font-face {
+            font-family: sans;
+            src: url(<%= locals.templatePath %>font.otf);
+            font-weight: lighter;
+        }
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        img{
+            max-width: 100%;
+        }
+        body{
+            font-family:nato;
+            font-weight: lighter;
+            width:800px;
+            height:1150px;
+            position: relative;
+        }
+
+        .title{
+            text-align: center;
+            position: relative;
+            margin-top: 32px;
+            font-size: 32px;
+        }
+        .avatar{
+            width: 160px;
+            height: 160px;
+            overflow: hidden;
+            border-radius: 80px;
+            margin: 0 auto;
+            margin-top: 32px;
+            box-shadow: 4px 5px 10px rgba(0,0,0,0.1);
+        }
+        .main {
+
+        }
+        .body dl{
+            margin-top: 48px;
+            font-size: 24px;
+        }
+        .body .intro{
+            font-size: 16px;
+            margin-top: 32px;
+            color: gray;
+            line-height: 1.5;
+        }
+
+        .body {
+            padding: 24px 100px;
+            font-size: 24px;
+        }
+        .footer {
+            color: gray;
+            text-align: center;
+            font-size: 16px;
+            position: absolute;
+            bottom: 16px;
+            width: 100%;
+        }
+
+        dd {
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+<div class="header">
+    <% if (locals.header) { %>
+    <img src="<%= locals.header %>">
+    <% }else{ %>
+    <img src="<%= locals.templatePath %>header.jpeg %>">
+    <% } %>
+</div>
+
+<div class="main">
+    <div class="title">
+        <%= locals.title %>
+    </div>
+        <% if (locals.avatar) { %>
+        <div class="avatar">
+        <img src="<%= locals.avatar %>">
+        </div>
+        <% }
+        %>
+    <div class="body">
+        <div>
+            <div class="intro">
+                <%= locals.content %>
+            </div>
+        </div>
+
+        <dl>
+            <dd><%= locals.time %></dd>
+            <% if (locals.zoom) { %>
+            <dd>zoom：<%= locals.zoom %></dd>
+            <% }
+            %>
+        </dl>
+    </div>
+</div>
+<div class="footer">
+    <%= locals.footer %>
+</div>
+</body>
+</html>
