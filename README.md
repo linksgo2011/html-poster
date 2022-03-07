@@ -35,6 +35,8 @@ or you can:
 
 > node server.js
 
+You can try online demo: http://shaogefenhao.com:8080
+
 ## Custom templates 
 
 You just need follow templates/default, just copy a folder and make sure index.html and meta.json are here.
