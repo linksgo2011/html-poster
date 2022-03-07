@@ -52,7 +52,9 @@
                     <div class="six columns">
                         <label for="template">模板</label>
                         <select class="u-full-width" id="template" onchange="handleTemplateChange()">
-                            <option value="default">日签</option>
+                            <option value="default">默认日签模板</option>
+                            <option value="daily-poster-1">日签模板 1</option>
+                            <option value="daily-poster-2">日签模板 2</option>
                             <option value="article-cover">题图</option>
                         </select>
                     </div>
@@ -86,6 +88,7 @@
     </div>
 </div>
 <script type="text/javascript">
+    // TODO，在模板中配置更多的元数据，直接读取模板中的数据
     const defaultParams = {
         default: {
             "content": "这是一个海报生成器，通过 HTML 模板生成海报，替换相关参数使用。",
@@ -94,7 +97,15 @@
         "article-cover": {
             "title": "题图生成器",
             "background": "https://s3.bmp.ovh/imgs/2022/02/7853688fffdc151f.jpeg"
-        }
+        },
+        "daily-poster-1": {
+            "content": "这是一个海报生成器，通过 HTML 模板生成海报，替换相关参数使用。",
+            "qrcode": "http://shaogefenhao.com"
+        },
+        "daily-poster-2": {
+            "content": "这是一个海报生成器，通过 HTML 模板生成海报，替换相关参数使用。",
+            "qrcode": "http://shaogefenhao.com"
+        },
     }
 
     const paramsDefines = {
@@ -107,7 +118,19 @@
         "article-cover": {
             "title": "标题",
             "background": "背景图"
-        }
+        },
+        "daily-poster-1": {
+            "content": "展示的文本内容",
+            "qrcode": "生成二维码的链接",
+            "header": "日签中的图片地址，缺省时为随机生成",
+            "author": "作者，如果填写会出现在右下角"
+        },
+        "daily-poster-2": {
+            "content": "展示的文本内容",
+            "qrcode": "生成二维码的链接",
+            "header": "日签中的图片地址，缺省时为随机生成",
+            "author": "作者，如果填写会出现在右下角"
+        },
     }
 
     handleTemplateChange();
