@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>海报</title>
+    <meta name=”viewport” content=”width=device-width, initial-scale=2″>
+    <style type="text/css">
+        @font-face {
+            font-family: NotoSansSC-Bold;
+            src: url(<%= locals.templatePath %>/NotoSansSC-Bold.otf);
+        }
+        @font-face {
+            font-family: NotoSansSC-Regular;
+            src: url(<%= locals.templatePath %>/NotoSansSC-Regular.otf);
+        }
+        @font-face {
+            font-family: NotoSerifSC-Black;
+            src: url(<%= locals.templatePath %>/NotoSerifSC-Black.otf);
+        }
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: content-box;
+        }
+
+        body {
+            font-weight: lighter;
+            width: 1080px;
+            height: 1920px;
+            font-size: 32px;
+            position: relative;
+        }
+
+        .header {
+            background: #eef1f4;
+            height: 960px;
+            overflow: hidden;
+        }
+
+        .body {
+            padding: 0 120px 120px 120px;
+        }
+
+        h1 {
+            font-family: NotoSerifSC-Black;
+            font-size: 100px;
+            line-height: 130px;
+            margin-top: 42px;
+        }
+
+        h2 {
+            font-family: NotoSansSC-Bold;
+            margin-top: 32.56px;
+            font-size: 30px;
+            line-height: 40px;
+            font-weight: bold;
+        }
+
+        div.content {
+            font-family: NotoSansSC-Regular;
+            font-size: 30px;
+            line-height: 40px;
+            font-weight: normal;
+        }
+
+        .logo {
+            position: absolute;
+            left: 120px;
+            bottom: 97px;
+            display: inline-block;
+        }
+
+        .qrcode {
+            width: 140px;
+            position: absolute;
+            right: 120px;
+            bottom: 120px;
+            font-size: 20px;
+            line-height: 20px;
+            display: inline-block;
+            font-family: NotoSansSC-Regular;
+        }
+
+        .qrcode img {
+            width: 140px;
+            height: 140px;
+        }
+
+        .qrcode .description{
+            margin-top: 12px;
+        }
+    </style>
+    <script src="<%= locals.templatePath %>/qrcode.min.js"></script>
+</head>
+<body>
+<div class="header">
+    <img src="<%= locals.templatePath %>./header.jpeg" alt="">
+</div>
+<div class="body">
+    <h1 class="title"><%=locals.title%></h1>
+    <h2 class="sub-title"><%=locals.subTitle%></h2>
+    <div class="content"><%=locals.content%></div>
+</div>
+<div class="footer">
+    <div class="logo">
+        <img src="<%= locals.templatePath %>/logo.png" alt="">
+    </div>
+    <div class="qrcode">
+        <div id="qrcode"></div>
+        <p class="description"><%=locals.qrcodeDescription%></p>
+    </div>
+</div>
+<% if (locals.qrcode) { %>
+<script type="text/javascript">
+    new QRCode(document.getElementById("qrcode"), "<%= locals.qrcode %>");
+</script>
+<% } %>
+</body>
+</html>

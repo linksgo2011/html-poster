@@ -52,6 +52,7 @@
                     <div class="six columns">
                         <label for="template">模板</label>
                         <select class="u-full-width" id="template" onchange="handleTemplateChange()">
+                            <option value="tw-poster-new">TW 海报</option>
                             <option value="default">默认日签模板</option>
                             <option value="daily-poster-1">日签模板 1</option>
                             <option value="daily-poster-2">日签模板 2</option>
@@ -106,6 +107,13 @@
             "content": "这是一个海报生成器，通过 HTML 模板生成海报，替换相关参数使用。",
             "qrcode": "http://shaogefenhao.com"
         },
+        "tw-poster-new": {
+            "title": "标题 noto serif sc black 字号 100pt 行距130pt",
+            "subTitle": "副标题 noto serif sc bold 字号 30pt 行距40pt",
+            "content": "正文 noto sans sc regular 字号 30pt 行距40pt",
+            "qrcode": "https://via.placeholder.com/140",
+            "qrcodeDescription": "扫码noto sans sc regular 20pt",
+        },
     }
 
     const paramsDefines = {
@@ -130,6 +138,13 @@
             "qrcode": "生成二维码的链接",
             "header": "日签中的图片地址，缺省时为随机生成",
             "author": "作者，如果填写会出现在右下角"
+        },
+        "tw-poster-new": {
+            "title": "标题 noto serif sc black 字号 100pt 行距130pt",
+            "subTitle": "副标题 noto serif sc bold 字号 30pt 行距40pt",
+            "content": "正文 noto sans sc regular 字号 30pt 行距40pt",
+            "qrcode": "二维码",
+            "qrcodeDescription": "二维码描述",
         },
     }
 
