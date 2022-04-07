@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>海报生成器</title>
+    <title>HTML Poster</title>
     <link rel="stylesheet" href="./css/normalize.css">
     <style type="text/css">
         body {
@@ -40,111 +40,69 @@
 </head>
 <body>
 <div class="header">
-    <h1>简易海报生成器</h1>
+    <h1>Simple poster generator</h1>
 </div>
 <div class="body">
     <div class="row">
         <div class="left column">
-            <h2>模板参数</h2>
+            <h2>Template parameter</h2>
 
             <form id="builder">
                 <div class="row">
                     <div class="six columns">
-                        <label for="template">模板</label>
+                        <label for="template">Template</label>
                         <select class="u-full-width" id="template" onchange="handleTemplateChange()">
-                            <option value="tw-poster-new">TW 海报</option>
-                            <option value="default">默认日签模板</option>
-                            <option value="daily-poster-1">日签模板 1</option>
-                            <option value="daily-poster-2">日签模板 2</option>
-                            <option value="article-cover">题图</option>
+                            <option value="tw-poster-new">TW Poster</option>
                         </select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="six columns">
-                        <label>参数</label>
+                        <label>Parameter</label>
                         <textarea id="parameters" rows="10" cols="25" class="u-full-width"></textarea>
                     </div>
                 </div>
                 <button-groups>
-                    <input type="button" onclick="preview()" value="预览">
-                    <input type="button" class="button-primary" onclick="download()" value="下载">
+                    <input type="button" onclick="preview()" value="Preview">
+                    <input type="button" class="button-primary" onclick="download()" value="Download">
                 </button-groups>
             </form>
 
-            <h2>模板参数说明</h2>
+            <h2>Template Parameters</h2>
             <div id="parameterDocs">
 
             </div>
         </div>
         <div class="right column">
-            <h2>预览</h2>
+            <h2>Preview Here</h2>
             <iframe id="preview" width="800" height="1150"
                     src="/preview?template=default&parameters=%7B%22content%22%3A%22Principles%20of%20architecture%3A%20trade-offs%20over%20absolutes%3B%20More%20right%20than%20right%3B%20Consensus%20over%20preference.%22%7D"
                     frameborder="0"></iframe>
         </div>
     </div>
     <div class="footer">
-        作者：@少个分号 <a href="http://shaogefenhao.com/">http://shaogefenhao.com/</a> 图片来自：<a href="https://unsplash.com/">https://unsplash.com/</a>
+        Author：shaogefenhao <a href="http://shaogefenhao.com/">http://shaogefenhao.com/</a> Images from：<a href="https://unsplash.com/">https://unsplash.com/</a>
     </div>
 </div>
 <script type="text/javascript">
     // TODO，在模板中配置更多的元数据，直接读取模板中的数据
     const defaultParams = {
-        default: {
-            "content": "这是一个海报生成器，通过 HTML 模板生成海报，替换相关参数使用。",
-            "qrcode": "http://shaogefenhao.com"
-        },
-        "article-cover": {
-            "title": "题图生成器",
-            "background": "https://s3.bmp.ovh/imgs/2022/02/7853688fffdc151f.jpeg"
-        },
-        "daily-poster-1": {
-            "content": "这是一个海报生成器，通过 HTML 模板生成海报，替换相关参数使用。",
-            "qrcode": "http://shaogefenhao.com"
-        },
-        "daily-poster-2": {
-            "content": "这是一个海报生成器，通过 HTML 模板生成海报，替换相关参数使用。",
-            "qrcode": "http://shaogefenhao.com"
-        },
         "tw-poster-new": {
-            "title": "标题 noto serif sc black 字号 100pt 行距130pt",
-            "subTitle": "副标题 noto serif sc bold 字号 30pt 行距40pt",
-            "content": "正文 noto sans sc regular 字号 30pt 行距40pt",
+            "title": "Title noto serif sc black ",
+            "subTitle": "Sub title noto serif sc bold word size 30pt light height 40pt",
+            "content": "Content noto sans sc regular word size 30pt light height 40pt",
             "qrcode": "https://via.placeholder.com/140",
-            "qrcodeDescription": "扫码noto sans sc regular 20pt",
+            "qrcodeDescription": "QrCode here",
         },
     }
 
     const paramsDefines = {
-        default: {
-            "content": "展示的文本内容",
-            "qrcode": "生成二维码的链接",
-            "header": "日签中的图片地址，缺省时为随机生成",
-            "author": "作者，如果填写会出现在右下角"
-        },
-        "article-cover": {
-            "title": "标题",
-            "background": "背景图"
-        },
-        "daily-poster-1": {
-            "content": "展示的文本内容",
-            "qrcode": "生成二维码的链接",
-            "header": "日签中的图片地址，缺省时为随机生成",
-            "author": "作者，如果填写会出现在右下角"
-        },
-        "daily-poster-2": {
-            "content": "展示的文本内容",
-            "qrcode": "生成二维码的链接",
-            "header": "日签中的图片地址，缺省时为随机生成",
-            "author": "作者，如果填写会出现在右下角"
-        },
         "tw-poster-new": {
-            "title": "标题 noto serif sc black 字号 100pt 行距130pt",
-            "subTitle": "副标题 noto serif sc bold 字号 30pt 行距40pt",
-            "content": "正文 noto sans sc regular 字号 30pt 行距40pt",
-            "qrcode": "二维码",
-            "qrcodeDescription": "二维码描述",
+            "title": "Title noto serif sc black word size 100pt light height 130pt",
+            "subTitle": "Sub title noto serif sc bold word size 30pt light height 40pt",
+            "content": "Content noto sans sc regular word size 30pt light height 40pt",
+            "qrcode": "URL for qrcode content",
+            "qrcodeDescription": "Description for description",
         },
     }
 
