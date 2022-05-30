@@ -2,11 +2,48 @@ const fs = require("fs");
 const ejs = require("ejs");
 const puppeteer = require('puppeteer');
 const express = require('express')
+const ipfilter = require('express-ipfilter').IpFilter
+
 const app = express()
 const port = 8080
 
+const ips = [
+    '202.66.38.130',
+    '113.200.150.121',
+    '113.140.31.18',
+    '112.46.64.218',
+    '202.66.38.130',
+    '114.247.59.210',
+    '124.127.212.122',
+    '202.66.38.130',
+    '218.104.223.170',
+    '182.150.56.97',
+    '202.66.38.130',
+    '220.249.123.170',
+    '58.49.208.26',
+    '202.66.38.130',
+    '210.21.235.146',
+    '61.144.206.250',
+    '202.66.38.130',
+    '220.248.92.74',
+    '180.168.76.106',
+    '202.66.34.49',
+    '202.66.38.130',
+    '183.91.151.226',
+    '218.97.25.194',
+    '192.168.1.2'
+]
+
+app.use(ipfilter(ips, {mode: 'allow', log: false,detectIp:req => {
+    return req.connection.remoteAddress.replace(/::ffff:/g, '')
+}}))
+app.use((err, req, res, _next) => {
+    res.status(400).send("bad request");
+})
+
 app.use(express.static('site'))
 app.use("/templates", express.static('templates'))
+
 const rootDir = process.cwd();
 
 function getMetaJson(template) {
