@@ -31,15 +31,14 @@ const ips = [
     '202.66.38.130',
     '183.91.151.226',
     '218.97.25.194',
-    // localhost
-    '127.0.0.1',
-    '192.168.1.2',
-    '140.143.4.135'
 ]
+if(process.env['ENV'] !== 'local'){
+    console.info("非本地环境，开启 IP 过滤")
+    app.use(ipfilter(ips, {mode: 'allow', log: false,detectIp:req => {
+        return req.connection.remoteAddress.replace(/::ffff:/g, '')
+    }}))
+}
 
-app.use(ipfilter(ips, {mode: 'allow', log: false,detectIp:req => {
-    return req.connection.remoteAddress.replace(/::ffff:/g, '')
-}}))
 app.use((err, req, res, _next) => {
     res.status(400).send("bad request");
 })

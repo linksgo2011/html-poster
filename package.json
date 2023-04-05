@@ -4,6 +4,8 @@
   "description": "A poster maker by html template.",
   "main": "./bin/index.js",
   "scripts": {
+    "start": "node server.js",
+    "start:local": "ENV=local node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
