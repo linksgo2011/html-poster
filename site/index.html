@@ -57,6 +57,7 @@
                         <label for="template">Template</label>
                         <select class="u-full-width" id="template" onchange="handleTemplateChange()">
                             <option value="tw-poster-new">TW Poster</option>
+                            <option value="article-cover">Article Cover</option>
                         </select>
                     </div>
                 </div>
@@ -99,6 +100,10 @@
             "qrcodeDescription": "QrCode here",
             "header": "default",
         },
+        "article-cover": {
+            "title": "Article Title",
+            "background": "https://s3.bmp.ovh/imgs/2022/02/7853688fffdc151f.jpeg"
+        },
     }
 
     const paramsDefines = {
@@ -108,6 +113,10 @@
             "content": "Content noto sans sc regular word size 30pt light height 40pt",
             "qrcode": "URL for qrcode content",
             "header": "[default][tw_illustration_149][tw_illustration_150][tw_illustration_151][tw_illustration_152]"
+        },
+        "article-cover": {
+            "title": "Title",
+            "background": "Url for background"
         },
     }
 
